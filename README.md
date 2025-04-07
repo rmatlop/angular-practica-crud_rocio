@@ -70,7 +70,7 @@ Desarrollar una aplicación web utilizando **Angular** con funcionalidades CRUD 
 
 2. **Estilos**:
 
-   - Utilizar estilos propios o la librería de estilos **Tailwind CSS** para el diseño de la aplicación.
+   - Utilizar estilos propios.
    - No está permitido usar librerías de componentes externos (como Material, PrimeNG, etc.).
    - No existe un diseño predefinido para la aplicación, siéntete libre de crear la interfaz a tu gusto.
 
@@ -84,8 +84,7 @@ Desarrollar una aplicación web utilizando **Angular** con funcionalidades CRUD 
 2. [Proteger la rama main](https://docs.github.com/es/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) para que no se pueda realizar commits directamente, solo a partir de Pull Request.
 3. Crear una rama `feat/initial-project` para configurar los proyectos y lanzar una Pull Request.
 4. Crea una plantilla para realizar las Pull Request (diseño libre).
-5. Si elegiste Tailwind CSS en el frontend sigue la [guía oficial](https://tailwindcss.com/docs/guides/angular).
-6. Configurar [Prettier](https://prettier.io/docs/install) , [ESLint](https://www.npmjs.com/package/@angular-eslint/eslint-plugin#:~:text=ESLint%20plugin%20for%20Angular%20applications%2C%20following%20https%3A%2F%2Fangular.dev%2Fstyle-guide.%20Latest,in%20your%20project%20by%20running%20%60npm%20i%20%40angular-eslint%2Feslint-plugin%60.) y [Husky](https://typicode.github.io/husky/get-started.html) en el frontend.
+5. Configurar [Prettier](https://prettier.io/docs/install) , [ESLint](https://www.npmjs.com/package/@angular-eslint/eslint-plugin#:~:text=ESLint%20plugin%20for%20Angular%20applications%2C%20following%20https%3A%2F%2Fangular.dev%2Fstyle-guide.%20Latest,in%20your%20project%20by%20running%20%60npm%20i%20%40angular-eslint%2Feslint-plugin%60.) y [Husky](https://typicode.github.io/husky/get-started.html) en el frontend.
 
 ---
 
@@ -118,7 +117,7 @@ Podemos utilizar la directiva de la forma que la usa Angular Material con el com
 
      > Eliminar: Muestra una ventana modal de confirmación.
 
-     - (Opcional) Utilizar un menu contextual para mostrar las opciones o dos botones.
+     - (Opcional) Utilizar un menu contextual para mostrar las opciones.
        Tienes la opción de utilizar el [Menu](https://material.angular.io/cdk/menu/examples) del cdk de Angular o crear tu propio componente.
 
 4. Subir los cambios y abrir una Pull Request.
@@ -212,7 +211,7 @@ Implementa un [interceptor](https://angular.dev/guide/http/interceptors) para a�
 
 ---
 
-<h1 style="color: red;">**Debes tener en cuenta todas las validaciones del backend**:</h1>
+<h1 style="color: red;">**Debes tener en cuenta todas las validaciones del backend**</h1>
 
 - manufactureYear debe ser como máximo en el año actual y como mínimo el año 1900.
 - registrationDate no puede ser anterior a manufactureYear.
@@ -240,7 +239,7 @@ Implementa un [interceptor](https://angular.dev/guide/http/interceptors) para a�
 3. Manejar la funcionalidad de la navegación.
 4. Subir los cambios y abrir una Pull Request.
 
-<strong style="color: yellow"> Si decides no utilizar un breadcrumb deberás manejar la navegación para volver a la tabla desde el detalle de la forma que veas mas adecuada. </strong>
+<strong> Si decides no utilizar un breadcrumb deberás manejar la navegación para volver a la tabla desde el detalle de la forma que veas mas adecuada. </strong>
 
 ---
 
