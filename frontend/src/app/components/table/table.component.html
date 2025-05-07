@@ -10,40 +10,28 @@
   </thead>
   <tbody>
     <tr>
-      <td><a>eeeecdvfg-1234-1234-1243-123456789101112</a></td>
-      <td>Corolla</td>
-      <td>Toyota</td>
-      <td>1</td>
-      <td>
-        <button appCarButton [cdkMenuTriggerFor]="menuActions">Acciones</button>
+      @for (car of cars(); track car.id) {
+        <td>
+          <a>{{ car.id }}</a>
+        </td>
+        <td>{{ car.brand }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.total }}</td>
+        <td>
+          <button appCarButton [cdkMenuTriggerFor]="menuActions">
+            Acciones
+          </button>
 
-        <ng-template #menuActions>
-          <div class="menu-actions" cdkMenu>
-            <button class="menu-actions-item" cdkMenuItem>Refresh</button>
-            <button class="menu-actions-item" cdkMenuItem>Settings</button>
-            <button class="menu-actions-item" cdkMenuItem>Help</button>
-            <button class="menu-actions-item" cdkMenuItem>Sign out</button>
-          </div>
-        </ng-template>
-      </td>
-    </tr>
-    <tr>
-      <td><a>eeeecdvfg-1234-1234-1243-123456789101112</a></td>
-      <td>Kajac</td>
-      <td>Renault</td>
-      <td>2</td>
-      <td>
-        <button appCarButton [cdkMenuTriggerFor]="menuActions">Acciones</button>
-
-        <ng-template #menuActions>
-          <div class="menu-actions" cdkMenu>
-            <button class="menu-actions-item" cdkMenuItem>Refresh</button>
-            <button class="menu-actions-item" cdkMenuItem>Settings</button>
-            <button class="menu-actions-item" cdkMenuItem>Help</button>
-            <button class="menu-actions-item" cdkMenuItem>Sign out</button>
-          </div>
-        </ng-template>
-      </td>
+          <ng-template #menuActions>
+            <div class="menu-actions" cdkMenu>
+              <button class="menu-actions-item" cdkMenuItem>
+                <a>Editar</a>
+              </button>
+              <button class="menu-actions-item" cdkMenuItem>Eliminar</button>
+            </div>
+          </ng-template>
+        </td>
+      }
     </tr>
   </tbody>
 </table>
