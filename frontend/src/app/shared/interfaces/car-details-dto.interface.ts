@@ -1,0 +1,54 @@
+export interface CarDetailsDto {
+  registrationDate: string;
+  mileage: number;
+  currency: Currency;
+  price: number;
+  manufactureYear: number;
+  availability: boolean;
+  licensePlate: string;
+}
+
+export enum Currency {
+  Eur = 'EUR',
+  Gbp = 'GBP',
+  Chf = 'CHF',
+  Sek = 'SEK',
+  Nok = 'NOK',
+  Dkk = 'DKK',
+  Pln = 'PLN',
+  Czk = 'CZK',
+  Huf = 'HUF',
+  Ron = 'RON',
+  Bgn = 'BGN',
+  Hrk = 'HRK',
+  Ars = 'ARS',
+  Brl = 'BRL',
+  Clp = 'CLP',
+  Cop = 'COP',
+  Pen = 'PEN',
+  Uyu = 'UYU',
+  Pyg = 'PYG',
+  Bob = 'BOB',
+  Ves = 'VES',
+  Usd = 'USD',
+  Cad = 'CAD',
+  Mxn = 'MXN',
+  Jpy = 'JPY',
+  Cny = 'CNY',
+  Inr = 'INR',
+  Krw = 'KRW',
+  Sgd = 'SGD',
+  Hkd = 'HKD',
+  Myr = 'MYR',
+  Idr = 'IDR',
+  Thb = 'THB',
+  Vnd = 'VND',
+  Pkr = 'PKR',
+  Aud = 'AUD',
+  Nzd = 'NZD',
+  Zar = 'ZAR',
+  Egp = 'EGP',
+  Ngn = 'NGN',
+  Kes = 'KES',
+  Ghs = 'GHS',
+}
