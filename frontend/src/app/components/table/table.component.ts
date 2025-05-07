@@ -15,8 +15,13 @@ export class TableComponent implements OnInit {
   protected cars = signal<Car[]>([]);
 
   ngOnInit() {
-    this.#carsService.getCars().subscribe((response) => {
-      this.cars.set(response as Car[]);
+    this.#carsService.getCars().subscribe({
+      next: (response) => {
+        this.cars.set(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 }
