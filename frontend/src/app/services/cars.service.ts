@@ -10,49 +10,27 @@ import { CreateCarDto } from '../shared/interfaces/create-car-dto.interface';
 })
 export class CarsService {
   readonly #httpClient = inject(HttpClient);
-  readonly #tokenAutorization = 'Bearer ' + localStorage.getItem('auth-token');
 
   getCars() {
-    return this.#httpClient.get<Car[]>(`${environment.apiUrl}/cars`, {
-      headers: {
-        Authorization: this.#tokenAutorization,
-      },
-    });
+    return this.#httpClient.get<Car[]>(`${environment.apiUrl}/cars`);
   }
 
   getCarById(id: string): Observable<Car[]> {
-    return this.#httpClient.get<Car[]>(`${environment.apiUrl}/cars/${id}`, {
-      headers: {
-        Authorization: this.#tokenAutorization,
-      },
-    });
+    return this.#httpClient.get<Car[]>(`${environment.apiUrl}/cars/${id}`);
   }
 
-  createCar(): Observable<CreateCarDto[]> {
-    return this.#httpClient.post<Car[]>(`${environment.apiUrl}/cars`, {
-      headers: {
-        Authorization: this.#tokenAutorization,
-      },
-    });
+  createCar(car: CreateCarDto): Observable<CreateCarDto[]> {
+    return this.#httpClient.post<Car[]>(`${environment.apiUrl}/cars`, car);
   }
 
   updateCar(car: Car): Observable<CreateCarDto[]> {
     return this.#httpClient.put<Car[]>(
       `${environment.apiUrl}/cars/${car.id}`,
       car,
-      {
-        headers: {
-          Authorization: this.#tokenAutorization,
-        },
-      },
     );
   }
 
   deleteCar(id: string) {
-    return this.#httpClient.delete<Car[]>(`${environment.apiUrl}/cars/${id}`, {
-      headers: {
-        Authorization: this.#tokenAutorization,
-      },
-    });
+    return this.#httpClient.delete<Car[]>(`${environment.apiUrl}/cars/${id}`);
   }
 }
