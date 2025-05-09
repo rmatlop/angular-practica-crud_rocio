@@ -12,7 +12,7 @@
     <tr>
       @for (car of cars(); track car.id) {
         <td>
-          <a>{{ car.id }}</a>
+          <a [routerLink]="['/cars', car.id]">{{ car.id }}</a>
         </td>
         <td>{{ car.brand }}</td>
         <td>{{ car.model }}</td>
