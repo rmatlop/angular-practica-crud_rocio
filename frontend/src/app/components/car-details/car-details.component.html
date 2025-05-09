@@ -1,0 +1,64 @@
+<section class="details-container">
+  <div class="details-header">
+    <div class="description">
+      <h2>{{ car().brand }} - {{ car().model }}</h2>
+      <span>ID: {{ car().id }}</span>
+      <span>Total: {{ car().total }}</span>
+    </div>
+
+    <div class="buttons">
+      <span appCarButton>Eliminar</span>
+      <a appCarButton href="#">Editar</a>
+    </div>
+  </div>
+
+  <table>
+    <caption>
+      Stock de coches
+    </caption>
+
+    <thead>
+      <tr>
+        <th>Fecha de registro</th>
+        <th>Año de fabricación</th>
+        <th>Precio</th>
+        <th>Kilometraje</th>
+        <th>Matrícula</th>
+        <th>Disponibilidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (carStock of carStock(); track $index) {
+        <tr>
+          <td class="text-align-center">
+            {{ carStock.registrationDate | date: "dd MMMM yyyy" }}
+          </td>
+          <td class="text-align-center">{{ carStock.manufactureYear }}</td>
+          <td class="text-align-right">
+            {{
+              carStock.price
+                | currency: carStock.currency : "symbol-narrow" : "1.2-2"
+            }}
+          </td>
+          <td class="text-align-right">
+            {{ carStock.mileage | number: "1.2-2" }} km
+            <span class="tag" [ngClass]="setColorTagClass(carStock.mileage)">{{
+              carStock.mileage | stateMielage
+            }}</span>
+          </td>
+          <td class="text-align-center">{{ carStock.licensePlate }}</td>
+          <td
+            class="color-availability-text text-align-center"
+            [ngClass]="
+              carStock.availability
+                ? 'availability-green-background'
+                : 'availability-red-background'
+            "
+          >
+            {{ carStock.availability ? "Disponible" : "No disponible" }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

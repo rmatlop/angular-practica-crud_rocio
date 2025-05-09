@@ -1,0 +1,98 @@
+.details-container {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h2 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  height: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  border:
+    solid 2px,
+    gainsboro;
+}
+
+table tr:not(:last-child) {
+  border-bottom: solid 2px gainsboro;
+}
+
+table tr:nth-child(even) {
+  background-color: #f6faff;
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+table th {
+  background-color: #1e5ea2;
+  color: white;
+}
+
+table th,
+table td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.color-availability-text {
+  color: white;
+}
+
+.availability-green-background {
+  background-color: green;
+}
+
+.availability-red-background {
+  background-color: red;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.tag {
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+
+.tag-green {
+  background-color: green;
+}
+
+.tag-orange {
+  background-color: orange;
+}
+
+.tag-blue {
+  background-color: rgb(82, 148, 247);
+}
