@@ -20,8 +20,11 @@ export class CarsService {
     return this.#httpClient.get<Car>(`${environment.apiUrl}/cars/${id}`);
   }
 
-  createCar(car: CreateCarDto): Observable<CreateCarDto[]> {
-    return this.#httpClient.post<Car[]>(`${environment.apiUrl}/cars`, car);
+  createCar(car: CreateCarDto): Observable<CreateCarDto> {
+    return this.#httpClient.post<CreateCarDto>(
+      `${environment.apiUrl}/cars`,
+      car,
+    );
   }
 
   updateCar(car: Car): Observable<CreateCarDto[]> {

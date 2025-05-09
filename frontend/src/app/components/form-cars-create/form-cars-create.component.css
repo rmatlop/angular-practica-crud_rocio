@@ -1,0 +1,9 @@
+.set-label-control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+select {
+  border-radius: 5px;
+}

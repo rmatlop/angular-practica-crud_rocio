@@ -1,0 +1,20 @@
+<form [formGroup]="carForm">
+  <div class="set-label-control">
+    <label for="brand">Marca</label>
+    <select id="brand" formControlName="optionSelect" (change)="getModels()">
+      <option selected></option>
+      @for (brand of brands(); track $index) {
+        <option>{{ brand }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="set-label-control">
+    <label for="model">Modelo</label>
+    <select id="model">
+      @for (model of models(); track $index) {
+        <option value="{{ model }}">{{ model }}</option>
+      }
+    </select>
+  </div>
+</form>
