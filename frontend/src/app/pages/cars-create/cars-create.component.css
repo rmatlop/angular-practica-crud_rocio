@@ -10,7 +10,6 @@
   border-radius: 5px;
   box-shadow: 2px 2px 5px gainsboro;
   background-color: white;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
+  padding: 30px;
+  margin-bottom: 50px;
 }

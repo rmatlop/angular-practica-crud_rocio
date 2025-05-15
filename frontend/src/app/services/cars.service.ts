@@ -24,6 +24,11 @@ export class CarsService {
     return this.#httpClient.post<CreateCarDto>(
       `${environment.apiUrl}/cars`,
       car,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
     );
   }
 

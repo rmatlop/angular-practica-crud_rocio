@@ -19,8 +19,8 @@
   </div>
 
   <h4>Detalles de los coches</h4>
-  <div class="cars-details" formArrayName="details">
-    @for (detail of details.controls; track $index; let i = $index) {
+  <div class="cars-details" formArrayName="carDetails">
+    @for (detail of carDetails.controls; track $index; let i = $index) {
       <div class="details-container" [formGroupName]="i">
         <h4>Detalle del coche {{ i + 1 }}</h4>
         <div class="row-details">
@@ -90,7 +90,7 @@
     }
     <div class="buttons">
       <button type="button" appCarButton (click)="addDetails()">
-        Añadir nuevo coche
+        Añadir detalles del coche
       </button>
       <button type="submit" appCarButton>Guardar</button>
     </div>

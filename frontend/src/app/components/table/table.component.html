@@ -9,8 +9,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      @for (car of cars(); track car.id) {
+    @for (car of cars(); track car.id) {
+      <tr>
         <td>
           <a [routerLink]="['/cars', car.id]">{{ car.id }}</a>
         </td>
@@ -31,7 +31,7 @@
             </div>
           </ng-template>
         </td>
-      }
-    </tr>
+      </tr>
+    }
   </tbody>
 </table>
