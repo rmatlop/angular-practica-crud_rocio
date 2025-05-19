@@ -1,0 +1,86 @@
+.set-label-control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+select,
+input {
+  border-color: gainsboro;
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: solid 2px red;
+}
+
+small {
+  color: red;
+}
+
+select:focus,
+select:active,
+select:focus-visible,
+select:focus-within {
+  border-color: #1e5ea2;
+}
+
+h4 {
+  font-weight: 500;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: solid 2px #1e5ea2;
+  border-radius: 5px;
+  box-shadow: 0.5px 0.5px 2px #1e5ea2;
+  padding: 15px;
+}
+
+.cars-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row-details {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+#availability {
+  transform: scale(1.5);
+  padding: 5px;
+  width: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  border: none;
+  width: 200px;
+  margin-top: 10px;
+}
+
+/* For Chrome, Safari, Edge and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

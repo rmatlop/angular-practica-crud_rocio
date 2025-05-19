@@ -8,24 +8,14 @@ import { environment } from '../../environments/environment';
 })
 export class BrandsService {
   readonly #httpClient = inject(HttpClient);
-  readonly #tokenAutorization = 'Bearer ' + localStorage.getItem('auth-token');
 
   getBrands(): Observable<string[]> {
-    return this.#httpClient.get<string[]>(`${environment.apiUrl}/brands`, {
-      headers: {
-        Authorization: this.#tokenAutorization,
-      },
-    });
+    return this.#httpClient.get<string[]>(`${environment.apiUrl}/brands`);
   }
 
   getModelByBrand(brandId: string) {
     return this.#httpClient.get<string[]>(
       `${environment.apiUrl}/brands/${brandId}/models`,
-      {
-        headers: {
-          Authorization: this.#tokenAutorization,
-        },
-      },
     );
   }
 }
