@@ -1,37 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import {
-  AbstractControl,
-  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { BrandsService } from '../../services/brands.service';
 import { CarsService } from '../../services/cars.service';
 import { CarButtonDirective } from '../../shared/directives/car-button.directive';
-import { Currency } from '../../shared/interfaces/car-details-dto.interface';
+import { Currency } from '../../shared/enums/currency.enum';
+import { CarDetailsDto } from '../../shared/interfaces/car-details-dto.interface';
 import { CreateCarDto } from '../../shared/interfaces/create-car-dto.interface';
-
-const registrationDateValidator: ValidatorFn = (
-  control: AbstractControl,
-): ValidationErrors | null => {
-  const registrationDate = control.get('registrationDate')?.value;
-  const manufactureYear = control.get('manufactureYear')?.value;
-
-  if (registrationDate && manufactureYear) {
-    const registrationDateArray = registrationDate.split('-');
-    const registrationYear = parseInt(registrationDateArray[0]);
-
-    return registrationYear < manufactureYear
-      ? { registrationDateIncorrect: true }
-      : null;
-  } else {
-    return null;
-  }
-};
+import { CarDetailsForm } from './car-details.form';
+import { registrationDateValidator } from './validators/registration-date.validator';
 
 @Component({
   selector: 'app-form-cars-create',
@@ -47,11 +28,15 @@ export class FormCarsCreateComponent implements OnInit {
   protected readonly brands = signal<string[]>([]);
   protected readonly models = signal<string[]>([]);
   protected readonly currencies = Object.values(Currency);
+  readonly #PRICE_MIN = 1;
+  readonly #DATE_MIN = 1900;
 
-  protected readonly carForm: FormGroup = this.#formBuilder.group({
-    brand: [''],
-    model: [''],
-    carDetails: this.#formBuilder.array([this.getDetailsGroup()]),
+  protected readonly carForm = this.#formBuilder.group({
+    brand: ['', [Validators.required]],
+    model: ['', [Validators.required]],
+    carDetails: this.#formBuilder.array<FormGroup<CarDetailsForm>>([
+      this.getDetailsGroup(),
+    ]),
   });
 
   ngOnInit() {
@@ -65,16 +50,20 @@ export class FormCarsCreateComponent implements OnInit {
     });
   }
 
-  getModels() {
-    const brand = this.carForm.controls['brand'].value!;
-    this.#brandsService.getModelByBrand(brand).subscribe({
-      next: (response) => {
-        this.models.set(response);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+  updateModels() {
+    const brand = this.carForm.controls['brand'].value;
+    if (brand) {
+      this.#brandsService.getModelByBrand(brand).subscribe({
+        next: (response) => {
+          this.models.set(response);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    } else {
+      this.models.set([]);
+    }
   }
 
   getDetailsGroup(): FormGroup {
@@ -85,32 +74,60 @@ export class FormCarsCreateComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.min(1900),
+            Validators.min(this.#DATE_MIN),
             Validators.max(this.#date.getFullYear()),
-            Validators.minLength(4),
-            Validators.maxLength(4),
           ],
         ],
         currency: ['', [Validators.required]],
-        price: ['', [Validators.required]],
+        price: ['', [Validators.required, Validators.min(this.#PRICE_MIN)]],
         licensePlate: [
           '',
           [
             Validators.required,
             Validators.pattern(
-              /^[0-9]{4}\s?[BCDFGHJKLMNPRSTVWXYZbcdfghjklmnprstvwxyz]{3}$/,
+              /^\d{4}\s?[B-DF-HJ-NPR-TV-Zb-df-hj-npr-tv-z]{3}$/,
             ),
           ],
         ],
         mileage: ['', [Validators.required]],
-        availability: ['', [Validators.required]],
+        availability: [false],
       },
       { validators: registrationDateValidator },
     );
   }
 
   get carDetails() {
-    return this.carForm.get('carDetails') as FormArray;
+    return this.carForm.controls.carDetails;
+  }
+
+  getCreateCarData() {
+    const copyCarForm: CreateCarDto = {
+      brand: this.carForm.controls['brand'].value ?? '',
+      model: this.carForm.controls['model'].value ?? '',
+      carDetails: this.carForm.controls['carDetails'].value.map((detail) => {
+        let copyRegistrationDate = '';
+
+        if (detail.registrationDate) {
+          copyRegistrationDate = new Date(
+            detail.registrationDate,
+          ).toISOString();
+        }
+
+        const copyDetail: CarDetailsDto = {
+          registrationDate: copyRegistrationDate,
+          mileage: detail.mileage ?? 0,
+          currency:
+            Currency[detail.currency as keyof typeof Currency] ?? Currency.Eur,
+          price: detail.price ?? 0,
+          manufactureYear: detail.manufactureYear ?? 1900,
+          availability: detail.availability ?? true,
+          licensePlate: detail.licensePlate?.toLocaleUpperCase() ?? '',
+        };
+        return copyDetail;
+      }),
+    };
+
+    return copyCarForm;
   }
 
   addDetails() {
@@ -118,27 +135,21 @@ export class FormCarsCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    const copyCarForm: CreateCarDto = {
-      ...this.carForm.value,
-    };
+    if (this.carForm.valid) {
+      const copyCarForm = this.getCreateCarData();
+      this.#carsService.createCar(copyCarForm).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
 
-    for (const detail of copyCarForm.carDetails) {
-      const date = new Date(detail.registrationDate);
-      if (!isNaN(date.getTime())) {
-        detail.registrationDate = date.toISOString();
-      }
+      this.resetForm();
+    } else {
+      this.carForm.markAllAsTouched();
     }
-
-    this.#carsService.createCar(copyCarForm).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-
-    this.resetForm();
   }
 
   resetForm() {

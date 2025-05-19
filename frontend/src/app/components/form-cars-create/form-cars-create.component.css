@@ -14,6 +14,15 @@ input {
   padding: 5px;
 }
 
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: solid 2px red;
+}
+
+small {
+  color: red;
+}
+
 select:focus,
 select:active,
 select:focus-visible,
@@ -62,4 +71,16 @@ button {
   border: none;
   width: 200px;
   margin-top: 10px;
+}
+
+/* For Chrome, Safari, Edge and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
