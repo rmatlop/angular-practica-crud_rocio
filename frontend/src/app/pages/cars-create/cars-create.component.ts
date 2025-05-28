@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormCarsCreateComponent } from '../../components/form-cars-create/form-cars-create.component';
+import { CarsFormComponent } from '../../shared/components/cars-form/cars-form.component';
 
 @Component({
   selector: 'app-cars-create',
-  imports: [FormCarsCreateComponent],
+  imports: [CarsFormComponent],
   templateUrl: './cars-create.component.html',
   styleUrl: './cars-create.component.css',
 })

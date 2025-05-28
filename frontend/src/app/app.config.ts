@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   LOCALE_ID,
+  provideAppInitializer,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
@@ -23,5 +24,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     { provide: LOCALE_ID, useValue: 'es' },
+    provideAppInitializer(() => {
+      window.localStorage.setItem('auth-token', 'mock-token');
+    }),
   ],
 };

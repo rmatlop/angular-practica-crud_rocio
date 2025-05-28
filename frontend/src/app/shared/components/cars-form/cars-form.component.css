@@ -56,7 +56,7 @@ h4 {
   justify-content: space-between;
 }
 
-#availability {
+.availability {
   transform: scale(1.5);
   padding: 5px;
   width: 10px;
@@ -69,18 +69,60 @@ h4 {
 
 button {
   border: none;
-  width: 200px;
   margin-top: 10px;
 }
 
-/* For Chrome, Safari, Edge and Opera */
+.add-button {
+  width: 260px;
+}
+
+.add-button:hover .icon-plus {
+  fill: #1e5ea2;
+}
+
+.div-remove-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  width: 130px;
+}
+
+.delete-button:hover {
+  background-color: #fed2d6;
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.delete-button:hover .icon-trash {
+  fill: #dc3545;
+}
+
+.save-button:hover .icon-save {
+  fill: #1e5ea2;
+}
+
+.icon-trash,
+.icon-plus,
+.icon-save {
+  fill: white;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+/* Remove arrows from the input number 
+   For Chrome, Safari, Edge and Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* For Firefox */
+/* Remove arrows from the input number 
+   For Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }

@@ -1,9 +1,9 @@
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CarsService } from '../../services/cars.service';
 import { CarButtonDirective } from '../../shared/directives/car-button.directive';
 import { CarSummary } from '../../shared/interfaces/car-summary.interface';
+import { CarsService } from '../../shared/services/cars.service';
 
 @Component({
   selector: 'app-table',
