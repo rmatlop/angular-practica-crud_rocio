@@ -80,8 +80,9 @@ button {
   fill: #1e5ea2;
 }
 
-.div-remove-button {
+.reset-remove-buttons {
   display: flex;
+  gap: 20px;
   justify-content: flex-end;
 }
 

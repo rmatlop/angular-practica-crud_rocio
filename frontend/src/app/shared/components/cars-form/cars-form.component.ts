@@ -183,6 +183,10 @@ export class CarsFormComponent implements OnInit {
     this.carDetails.push(this.getDetailsGroup());
   }
 
+  resetDetails(index: number) {
+    this.carDetails.at(index).reset();
+  }
+
   removeDetails(index: number) {
     this.carDetails.removeAt(index);
   }
