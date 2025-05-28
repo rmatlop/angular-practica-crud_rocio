@@ -62,8 +62,13 @@ td button {
 .menu-actions-item:hover {
   background-color: #dbe7f5;
 }
-/* dbe7f5*/
+
 .menu-actions-item:active {
   background-color: #1e5ea2;
   color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

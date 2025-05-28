@@ -25,7 +25,7 @@
           <ng-template #menuActions>
             <div class="menu-actions" cdkMenu>
               <button class="menu-actions-item" cdkMenuItem>
-                <a>Editar</a>
+                <a [routerLink]="['/cars/edit/', car.id]">Editar</a>
               </button>
               <button class="menu-actions-item" cdkMenuItem>Eliminar</button>
             </div>

@@ -8,7 +8,7 @@
 
     <div class="buttons">
       <span appCarButton>Eliminar</span>
-      <a appCarButton href="#">Editar</a>
+      <a appCarButton [routerLink]="['/cars/edit/', car().id]">Editar</a>
     </div>
   </div>
 
@@ -28,34 +28,34 @@
       </tr>
     </thead>
     <tbody>
-      @for (carStock of carStock(); track $index) {
+      @for (detail of carDetails(); track $index) {
         <tr>
           <td class="text-align-center">
-            {{ carStock.registrationDate | date: "dd MMMM yyyy" }}
+            {{ detail.registrationDate | date: "dd MMMM yyyy" }}
           </td>
-          <td class="text-align-center">{{ carStock.manufactureYear }}</td>
+          <td class="text-align-center">{{ detail.manufactureYear }}</td>
           <td class="text-align-right">
             {{
-              carStock.price
-                | currency: carStock.currency : "symbol-narrow" : "1.2-2"
+              detail.price
+                | currency: detail.currency : "symbol-narrow" : "1.2-2"
             }}
           </td>
           <td class="text-align-right">
-            {{ carStock.mileage | number: "1.2-2" }} km
-            <span class="tag" [ngClass]="setColorTagClass(carStock.mileage)">{{
-              carStock.mileage | stateMielage
+            {{ detail.mileage | number: "1.2-2" }} km
+            <span class="tag" [ngClass]="setColorTagClass(detail.mileage)">{{
+              detail.mileage | stateMielage
             }}</span>
           </td>
-          <td class="text-align-center">{{ carStock.licensePlate }}</td>
+          <td class="text-align-center">{{ detail.licensePlate }}</td>
           <td
             class="color-availability-text text-align-center"
             [ngClass]="
-              carStock.availability
+              detail.availability
                 ? 'availability-green-background'
                 : 'availability-red-background'
             "
           >
-            {{ carStock.availability ? "Disponible" : "No disponible" }}
+            {{ detail.availability ? "Disponible" : "No disponible" }}
           </td>
         </tr>
       }
